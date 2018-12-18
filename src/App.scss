@@ -1,0 +1,43 @@
+@import './styles/colors';
+
+.app {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 1px;
+  background-color: $border-color;
+  color: $text-color;
+
+  .pane {
+    background-color: $background-color;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    padding: 10px;
+  }
+
+  .title {
+    background-color: $title-color;
+    padding: 5px 10px;
+    font-size: 80%;
+    width: 100%;
+  }
+
+  .nav {
+    width: 250px;
+  }
+
+  .details {
+    width: 100%;
+    height: 100%;
+  }
+}

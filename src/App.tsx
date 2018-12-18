@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Logo from './containers/logo';
+import AccountBar from './containers/accountbar';
+import VehicleList from './containers/vehiclelist'
+import VehicleDetails from './containers/vehicledetails'
+import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+      <div className="app">
+        <header className="pane header">
+          <Logo/>
+          <AccountBar/>
         </header>
+        <nav className="pane nav">
+          <div className="title">Your vehicles</div>
+          <VehicleList/>
+        </nav>
+        <div className="pane details">
+          <div className="title">Details</div>
+          <VehicleDetails/>
+        </div>
       </div>
     );
   }

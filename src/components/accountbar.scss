@@ -1,0 +1,14 @@
+.accountbar {
+  text-align: center;
+
+  .fullname {
+    display: inline-block;
+  }
+
+  .button {
+    display: inline-block;
+    background: red;
+    width: 20px;
+    height: 20px;
+  }
+}
