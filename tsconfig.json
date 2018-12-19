@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6", // es6 required for babel-loader that is required for react-hot-loader : https://github.com/gaearon/react-hot-loader#add-babel-after-typescript
     "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
@@ -13,7 +13,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "lib": ["dom","es2015"]
+    "lib": ["dom","es2015"],
+    "types": []
   },
   "include": [
     "src"
