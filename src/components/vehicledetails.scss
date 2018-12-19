@@ -1,6 +1,9 @@
 @import '../styles/colors';
 
 .vehicledetails {
+    .detail > * {
+        padding: 5px 10px;
+    }
     .title {
         padding: 5px 10px;
         background-color: $border-color;

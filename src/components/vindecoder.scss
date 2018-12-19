@@ -1,6 +1,12 @@
 @import '../styles/colors';
 
 .vindecoder {
+    .error {
+        border: 1px solid white;
+        background: red;
+        padding: 10px;
+        margin-bottom: 10px;        
+    }
     ul.part {
         margin: 0;
         padding: 0;

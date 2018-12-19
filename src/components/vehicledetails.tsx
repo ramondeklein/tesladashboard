@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { VinDecoder } from './vindecoder';
 import { Vehicle } from '../services/teslaapi/datatypes';
+import { VinDecoder } from './vindecoder';
+import { OptionsDecoder } from './optiondecoder';
 import './vehicledetails.scss';
 
 export interface Props {
@@ -15,14 +16,27 @@ export class VehicleDetails extends Component<Props> {
     }
     return (
       <div className="vehicledetails">
-        <div className="title">VIN: {v.vin}</div>
-        <div className="online">{v.state}</div>
-        <div className="header">Decoded VIN</div>
-        <VinDecoder vin={v.vin}/>
-        <div className="header">Options</div>
-        <ul className="options">
-          {v.option_codes.split(",").map((o) => (<li key={o}>{o}</li>))}
-        </ul>
+        <div className="detail vin">
+          <div className="title">VIN</div>
+          <div>
+            Each car has a unique Vehicle Idendentification Number (VIN). The
+            VIN also holds some important information about the characteristics
+            of your car.
+          </div>
+          <VinDecoder vin={v.vin} />
+          <div>
+            The VIN decoding has been created based on the efforts of
+            <a href="https://teslatap.com/vin-decoder/">VIN decoder</a>.
+          </div>
+        </div>
+        <div className="detail options">
+          <div className="title">Options</div>
+          <OptionsDecoder options={v.option_codes.split(",").sort()} />
+        </div>
+        <div className="detail status">
+          <div className="title">Online actions</div>
+          <div className="online">{v.state}</div>
+        </div>
       </div>
     )
   }

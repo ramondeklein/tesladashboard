@@ -1,21 +1,22 @@
-import { vinPartsOld } from './vinpartsold';
-import { vinPartsNew } from './vinpartsnew';
-import { VinInfoPart, VinInfoPartDecoder } from './internals';
-export * from './internals';
+import { VinInfoPart, VinInfoPartDecoder, VinInfoPartDecoderCheckDigit } from "./internals";
+import { vinPartsNew } from "./vinpartsnew";
+import { vinPartsOld } from "./vinpartsold";
+export * from "./internals";
 
 const vinPartsList = [vinPartsOld, vinPartsNew];
 
 export interface DecodedVin {
     decodeVin(vin: string): VinInfoPart[] | undefined;
+    isValidVin(vin: string): boolean;
 }
 
 export class VinDecoder implements DecodedVin {
     public decodeVin(vin: string): VinInfoPart[] | undefined {
         const vinParts = this.GetVinInfoParts(vin);
         if (vinParts) {
-            let vinInfoParts = [];
+            const vinInfoParts = [];
             for (const vinPart of vinParts) {
-                var decodedPart = vinPart.decode(vin);
+                const decodedPart = vinPart.decode(vin);
                 if (decodedPart) {
                     vinInfoParts.push(decodedPart);
                 }
@@ -24,9 +25,23 @@ export class VinDecoder implements DecodedVin {
         }
     }
 
+    public isValidVin(vin: string): boolean {
+        const vinParts = this.GetVinInfoParts(vin);
+        if (vinParts) {
+            for (const vinPart of vinParts) {
+                if (vinPart instanceof VinInfoPartDecoderCheckDigit) {
+                    const vinInfoPart = vinPart.decode(vin);
+                    if (vinInfoPart) {
+                        return vinInfoPart.decodedValue === VinInfoPartDecoderCheckDigit.validString;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     private GetVinInfoParts(vin: string): VinInfoPartDecoder[] | undefined {
         for (const vinParts of vinPartsList) {
-            // We should always match the first two parts
             const manufacturer = vinParts[0].decode(vin);
             const model = vinParts[1].decode(vin);
             if (manufacturer && manufacturer.decodedValue && model && model.decodedValue) {
@@ -39,4 +54,9 @@ export class VinDecoder implements DecodedVin {
 export function decodeVin(vin: string) {
     const vinDecoder = new VinDecoder();
     return vinDecoder.decodeVin(vin);
+}
+
+export function isValidVin(vin: string) {
+    const vinDecoder = new VinDecoder();
+    return vinDecoder.isValidVin(vin);
 }

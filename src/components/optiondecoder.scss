@@ -1,0 +1,16 @@
+@import '../styles/colors';
+
+.optionsdecoder {
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+
+        li {
+            list-style-type: none;
+            margin-right: 1em;
+        }
+    }
+    
+}

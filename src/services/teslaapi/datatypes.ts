@@ -1,4 +1,4 @@
-export interface AccessToken {    
+export interface AccessToken {
     access_token: string;
     created_at: number;
     expires_in: number;
