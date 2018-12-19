@@ -15,7 +15,7 @@ export class VinDecoder extends Component<Props> {
       return (
         <div className="vindecoder">
           <ul className="part">
-            {vinParts.map((part) => (<li><VinPart vin={vin} part={part}/></li>))}
+            {vinParts.map((part, i) => (<li key={i}><VinPart vin={vin} part={part}/></li>))}
           </ul>
         </div>
       );
