@@ -1,0 +1,9 @@
+@import '../styles/colors';
+
+.vehicledetails {
+    .title {
+        padding: 5px 10px;
+        background-color: $border-color;
+        border-bottom: 1px solid $border-color;
+    }   
+}

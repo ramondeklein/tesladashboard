@@ -13,7 +13,7 @@ export interface Vehicle {
     vehicle_id: number;
     vin: string;
     display_name: string;
-    option_codes: string[];
+    option_codes: string;
     color: string | null;
     tokens: string[];
     state: State;

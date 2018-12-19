@@ -12,6 +12,12 @@
 
   .pane {
     background-color: $background-color;
+
+    & > .title {
+      background-color: $title-color;
+      padding: 5px 10px;
+      width: 100%;
+    }  
   }
 
   .header {
@@ -23,13 +29,6 @@
     grid-column-start: 1;
     grid-column-end: -1;
     padding: 10px;
-  }
-
-  .title {
-    background-color: $title-color;
-    padding: 5px 10px;
-    font-size: 80%;
-    width: 100%;
   }
 
   .nav {
