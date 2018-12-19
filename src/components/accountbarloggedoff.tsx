@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './accountbar.scss';
 
-export interface Props {
-}
-
 export interface DispatchProps {
   onLogOn?: (email: string, password: string) => void;
 }
@@ -13,8 +10,8 @@ interface State {
   password: string;
 }
   
-export class AccountBarLoggedOff extends Component<Props & DispatchProps, State> {
-  constructor(props: Props & DispatchProps) {
+export class AccountBarLoggedOff extends Component<DispatchProps, State> {
+  constructor(props: DispatchProps) {
     super(props);
     this.state = {
       email: '',

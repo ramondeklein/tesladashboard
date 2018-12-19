@@ -1,4 +1,8 @@
 import { Vehicle } from '../services/teslaapi/datatypes'
+import { IsFetching, isFetching } from './isfetching';
+import { ApplicationState } from '../types';
+import { tesla } from '../services/teslaapi';
+import { ThunkDispatch } from 'redux-thunk'
 
 export const RESET_VEHICLES = 'RESET_VEHICLES';
 export type RESET_VEHICLES = typeof RESET_VEHICLES;
@@ -21,11 +25,28 @@ export interface RefreshVehicles {
     vehicles: Vehicle[];
 }
 
-export function refreshVehicles(vehicles: Vehicle[]): RefreshVehicles {
-    return {
-        type: REFRESH_VEHICLES,
-        vehicles
-    };
+export function refreshVehicles() {
+    return async (dispatch: ThunkDispatch<ApplicationState, {}, IsFetching | RefreshVehicles>, getState: () => ApplicationState) => {
+        const user = getState().account.user;
+        if (user) {
+            try {
+                dispatch(isFetching(true));
+                const vehiclesResult = await tesla.getVehicles(user.teslaToken);
+                dispatch({
+                    type: REFRESH_VEHICLES,
+                    vehicles: vehiclesResult
+                });
+            }
+            finally {
+                dispatch(isFetching(false));
+            }
+        } else {
+            dispatch({
+                type: REFRESH_VEHICLES,
+                vehicles: []
+            });
+        }
+    }
 }
 
 export const SELECT_VEHICLE = 'SELECT_VEHICLE';
