@@ -1,6 +1,7 @@
 import { vinPartsOld } from './vinpartsold';
 import { vinPartsNew } from './vinpartsnew';
 import { VinInfoPart, VinInfoPartDecoder } from './internals';
+export * from './internals';
 
 const vinPartsList = [vinPartsOld, vinPartsNew];
 

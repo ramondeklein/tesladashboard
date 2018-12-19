@@ -1,0 +1,14 @@
+@import '../styles/colors';
+
+.vinpart {
+    .dimmed {
+        opacity: .1;
+    }
+    .label {
+        opacity: .2;
+        margin-left: 1em;
+        &:after {
+            content: ": ";
+        }
+    }
+}

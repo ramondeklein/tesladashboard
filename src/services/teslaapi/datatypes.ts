@@ -6,8 +6,6 @@ export interface AccessToken {
     token_type: string;
 }
 
-export enum State { online, offline };
-
 export interface Vehicle {
     id: number;
     vehicle_id: number;
@@ -16,11 +14,11 @@ export interface Vehicle {
     option_codes: string;
     color: string | null;
     tokens: string[];
-    state: State;
+    state: string;
     in_service: boolean;
     id_s: string;
     calendar_enabled: boolean;
     api_version: number;
     backseat_token: string | null;
-    backseat_token_update_at: string | null;
+    backseat_token_updated_at: string | null;
 }
