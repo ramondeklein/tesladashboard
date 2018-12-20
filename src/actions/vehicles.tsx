@@ -1,10 +1,10 @@
-import { Vehicle } from '../services/teslaapi/datatypes'
-import { IsFetching, isFetching } from './isfetching';
-import { ApplicationState } from '../types';
-import { tesla } from '../services/teslaapi';
-import { ThunkDispatch } from 'redux-thunk'
+import { ThunkDispatch } from "redux-thunk";
+import { tesla } from "../services/teslaapi";
+import { Vehicle } from "../services/teslaapi/datatypes";
+import { ApplicationState } from "../types";
+import { IsFetching, isFetching } from "./isfetching";
 
-export const RESET_VEHICLES = 'RESET_VEHICLES';
+export const RESET_VEHICLES = "RESET_VEHICLES";
 export type RESET_VEHICLES = typeof RESET_VEHICLES;
 
 export interface ResetVehicles {
@@ -13,11 +13,11 @@ export interface ResetVehicles {
 
 export function resetVehicles(): ResetVehicles {
     return {
-        type: RESET_VEHICLES
+        type: RESET_VEHICLES,
     };
 }
 
-export const REFRESH_VEHICLES = 'REFRESH_VEHICLES';
+export const REFRESH_VEHICLES = "REFRESH_VEHICLES";
 export type REFRESH_VEHICLES = typeof REFRESH_VEHICLES;
 
 export interface RefreshVehicles {
@@ -34,32 +34,16 @@ export function refreshVehicles() {
                 const vehiclesResult = await tesla.getVehicles(user.teslaToken);
                 dispatch({
                     type: REFRESH_VEHICLES,
-                    vehicles: vehiclesResult
+                    vehicles: vehiclesResult,
                 });
-            }
-            finally {
+            } finally {
                 dispatch(isFetching(false));
             }
         } else {
             dispatch({
                 type: REFRESH_VEHICLES,
-                vehicles: []
+                vehicles: [],
             });
         }
-    }
-}
-
-export const SELECT_VEHICLE = 'SELECT_VEHICLE';
-export type SELECT_VEHICLE = typeof SELECT_VEHICLE;
-
-export interface SelectVehicle {
-    type: SELECT_VEHICLE;
-    vehicle?: Vehicle;
-}
-
-export function selectVehicle(vehicle?: Vehicle): SelectVehicle {
-    return {
-        type: SELECT_VEHICLE,
-        vehicle
     };
 }

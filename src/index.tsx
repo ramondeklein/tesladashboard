@@ -1,20 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk';
-import { reducer } from './reducers';
-import { ApplicationState } from './types';
-import './index.scss';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { ConnectedRouter, routerMiddleware } from "connected-react-router";
+import { createBrowserHistory } from "history";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { Route } from "react-router";
+import { applyMiddleware, compose, createStore } from "redux";
+import thunk from "redux-thunk";
 
-const store = createStore<ApplicationState, any, any, any>(reducer, applyMiddleware(thunk));
+import App from "./app";
+import "./index.scss";
+import createRootReducer from "./reducers";
+import * as serviceWorker from "./serviceWorker";
+import { ApplicationState } from "./types";
 
-ReactDOM.render(<Provider store={store}>
-    <App />
-  </Provider>, 
-  document.getElementById('root'));
+const history = createBrowserHistory();
+
+const store = createStore<ApplicationState, any, any, any>(
+  createRootReducer(history),
+  {},
+  compose(applyMiddleware(routerMiddleware(history), thunk)));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Route path="/" component={App} />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

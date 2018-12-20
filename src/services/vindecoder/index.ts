@@ -1,7 +1,8 @@
-import { VinInfoPart, VinInfoPartDecoder, VinInfoPartDecoderCheckDigit } from "./internals";
+import { VinInfoPartDecoderCheckDigit } from "./vininfopartdecodercheckdigit";
+import { VinInfoPart, VinInfoPartDecoder } from "./vininfopartdecoderdefault";
 import { vinPartsNew } from "./vinpartsnew";
 import { vinPartsOld } from "./vinpartsold";
-export * from "./internals";
+export * from "./vininfopartdecoderdefault";
 
 const vinPartsList = [vinPartsOld, vinPartsNew];
 

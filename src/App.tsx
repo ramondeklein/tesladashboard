@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import Logo from './containers/logo';
-import AccountBar from './containers/accountbar';
-import VehicleList from './containers/vehiclelist'
-import VehicleDetails from './containers/vehicledetails'
-import './App.scss';
+import React, { Component } from "react";
+import "./app.scss";
+import AccountBar from "./containers/accountbar";
+import Logo from "./containers/logo";
+import VehicleDetails from "./containers/vehicledetails";
+import VehicleList from "./containers/vehiclelist";
 
 class App extends Component {
-  render() {
+  public render() {
     return (
       <div className="app">
         <header className="pane header">
@@ -19,12 +19,13 @@ class App extends Component {
         </nav>
         <div className="pane details">
           <div className="title">Details</div>
-          <VehicleDetails/>
+          <Route path="/vehicle/:vehicleId" component={VehicleDetails}/>
         </div>
       </div>
     );
   }
 }
 
-import { hot } from 'react-hot-loader';
+import { hot } from "react-hot-loader";
+import { Route } from "react-router";
 export default hot(module)(App);

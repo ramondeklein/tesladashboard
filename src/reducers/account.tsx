@@ -1,12 +1,12 @@
-import { LOG_ON, LOG_OFF, LogOn, LogOff } from '../actions/account';
-import { AccountState } from '../types/account';
+import { LOG_OFF, LOG_ON, LogOff, LogOn } from "../actions/account";
+import { AccountState } from "../types/account";
 
 export function accountReducer(state: AccountState = {}, action: LogOn | LogOff): AccountState {
   switch (action.type) {
     case LOG_OFF:
       return {
         ...state,
-        user: undefined
+        user: undefined,
       };
 
     case LOG_ON:
@@ -14,8 +14,8 @@ export function accountReducer(state: AccountState = {}, action: LogOn | LogOff)
         ...state,
         user: {
           email: action.email,
-          teslaToken: action.teslaToken
-        }
+          teslaToken: action.teslaToken,
+        },
       };
 
     default:

@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import tesla from './logo.svg';
-import './logo.scss';
+import React, { Component } from "react";
+import "./logo.scss";
+import tesla from "./logo.svg";
 
 export interface Props {
     isRotating: boolean;
   }
-  
+
 export class Logo extends Component<Props> {
-  render() {
+  public render() {
     return (
       <div>
         <img src={tesla} className={this.getClasses()} alt="Tesla" />

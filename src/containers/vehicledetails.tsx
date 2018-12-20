@@ -1,11 +1,27 @@
-import { VehicleDetails, Props } from '../components/vehicledetails';
-import { ApplicationState } from '../types';
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { RouteComponentProps } from "react-router";
+import { Props, VehicleDetails } from "../components/vehicledetails";
+import { ApplicationState } from "../types";
 
-function mapStateToProps(state: ApplicationState) : Props {
-  return {
-    vehicle: state.vehicles.selectedVehicle
+interface RouterProps {
+  vehicleId: string;
+}
+
+function getSelectedVehicle(state: ApplicationState, vehicleId: number) {
+  if (state.vehicles.vehicles) {
+    for (const vehicle of state.vehicles.vehicles)
+    {
+      if (vehicle.id === vehicleId) {
+        return vehicle;
+      }
+    }
   }
+}
+
+function mapStateToProps(state: ApplicationState, ownProps: RouteComponentProps<RouterProps>): Props {
+  return {
+    vehicle: getSelectedVehicle(state, parseInt(ownProps.match.params.vehicleId, 10)),
+  };
 }
 
 export default connect(mapStateToProps)(VehicleDetails);

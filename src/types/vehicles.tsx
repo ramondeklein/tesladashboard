@@ -1,6 +1,5 @@
-import { Vehicle } from '../services/teslaapi/datatypes';
+import { Vehicle } from "../services/teslaapi/datatypes";
 
 export interface VehiclesState {
     vehicles?: Vehicle[];
-    selectedVehicle?: Vehicle;
 }

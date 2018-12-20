@@ -1,21 +1,11 @@
-import { VehicleList, Props, DispatchProps } from '../components/vehiclelist';
-import { SelectVehicle, selectVehicle } from '../actions/vehicles';
-import { ApplicationState } from '../types';
-import { Vehicle } from '../services/teslaapi/datatypes';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { Props, VehicleList } from "../components/vehiclelist";
+import { ApplicationState } from "../types";
 
-function mapStateToProps(state: ApplicationState) : Props {
+function mapStateToProps(state: ApplicationState): Props {
   return {
     vehicles: state.vehicles.vehicles || [],
-    selected: state.vehicles.selectedVehicle
-  }
-}
-
-function mapDispatchToProps(dispatch: Dispatch<SelectVehicle>) : DispatchProps {
-  return {
-    onSelect: (vehicle?: Vehicle) => dispatch(selectVehicle(vehicle))
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VehicleList);
+export default connect(mapStateToProps)(VehicleList);

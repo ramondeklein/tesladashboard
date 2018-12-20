@@ -1,4 +1,8 @@
-import { VinInfoPartDecoder, VinInfoPartDecoderDefault, VinInfoPartDecoderOptions, VinInfoPartDecoderCheckDigit, VinInfoPartDecoderModelYear, VinInfoPartDecoderBuildPhase } from "./internals";
+import { VinInfoPartDecoderBuildPhase } from "./vininfopartdecoderbuildphase";
+import { VinInfoPartDecoderCheckDigit } from "./vininfopartdecodercheckdigit";
+import { VinInfoPartDecoder, VinInfoPartDecoderDefault } from "./vininfopartdecoderdefault";
+import { VinInfoPartDecoderModelYear } from "./vininfopartdecodermodelyear";
+import { VinInfoPartDecoderOptions } from "./vininfopartdecoderoptions";
 
 export const vinPartsOld: VinInfoPartDecoder[] = [
     new VinInfoPartDecoderOptions(0, 3, "Manufacturer", {

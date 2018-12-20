@@ -1,9 +1,9 @@
-import { tesla } from '../services/teslaapi';
-import { IsFetching, isFetching } from './isfetching';
-import { ThunkDispatch } from 'redux-thunk'
-import { ApplicationState } from '../types';
+import { ThunkDispatch } from "redux-thunk";
+import { tesla } from "../services/teslaapi";
+import { ApplicationState } from "../types";
+import { IsFetching, isFetching } from "./isfetching";
 
-export const LOG_ON = 'LOG_ON';
+export const LOG_ON = "LOG_ON";
 export type LOG_ON = typeof LOG_ON;
 
 export interface LogOn {
@@ -20,16 +20,15 @@ export function logOn(email: string, password: string) {
             dispatch({
                 type: LOG_ON,
                 email,
-                teslaToken: loginResult.access_token
+                teslaToken: loginResult.access_token,
             });
-        }
-        finally {
+        } finally {
             dispatch(isFetching(false));
         }
-    }
+    };
 }
 
-export const LOG_OFF = 'LOG_OFF';
+export const LOG_OFF = "LOG_OFF";
 export type LOG_OFF = typeof LOG_OFF;
 
 export interface LogOff {
@@ -38,6 +37,6 @@ export interface LogOff {
 
 export function logOff(): LogOff {
     return {
-        type: LOG_OFF
+        type: LOG_OFF,
     };
 }

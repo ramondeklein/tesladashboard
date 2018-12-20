@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import './vinpart.scss';
-import { VinInfoPart } from '../services/vindecoder';
-import { vinPartsNew } from '../services/vindecoder/vinpartsnew';
+import React, { Component } from "react";
+import { VinInfoPart } from "../services/vindecoder";
+import "./vinpart.scss";
 
 export interface Props {
     vin: string;
@@ -9,7 +8,7 @@ export interface Props {
 }
 
 export class VinPart extends Component<Props> {
-    render() {
+    public render() {
         const { vin, part } = this.props;
         const leftPart = vin.substring(0, part.startIndex);
         const highlightPart = vin.substring(part.startIndex, part.startIndex + part.length);
@@ -28,4 +27,3 @@ export class VinPart extends Component<Props> {
         );
     }
 }
-

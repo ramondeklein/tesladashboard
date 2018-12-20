@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { Vehicle } from '../services/teslaapi/datatypes';
-import { VinDecoder } from './vindecoder';
-import { OptionsDecoder } from './optiondecoder';
-import './vehicledetails.scss';
+import React, { Component } from "react";
+import { Vehicle } from "../services/teslaapi/datatypes";
+import { OptionsDecoder } from "./optiondecoder";
+import "./vehicledetails.scss";
+import { VinDecoder } from "./vindecoder";
 
 export interface Props {
   vehicle?: Vehicle;
 }
 
 export class VehicleDetails extends Component<Props> {
-  render() {
+  public render() {
     const v = this.props.vehicle;
     if (!v) {
-      return (<div>Please select a vehicle on the left</div>)
+      return (<div>Please select a vehicle on the left</div>);
     }
     return (
       <div className="vehicledetails">
@@ -38,7 +38,7 @@ export class VehicleDetails extends Component<Props> {
           <div className="online">{v.state}</div>
         </div>
       </div>
-    )
+    );
   }
 }
 
