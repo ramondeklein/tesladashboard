@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Vehicle } from "../services/teslaapi/datatypes";
 import { OptionsDecoder } from "./optiondecoder";
-import "./vehicledetails.scss";
 import { VinDecoder } from "./vindecoder";
+
+import "./vehicledetails.scss";
 
 export interface Props {
   vehicle?: Vehicle;
@@ -25,8 +26,8 @@ export class VehicleDetails extends Component<Props> {
           </div>
           <VinDecoder vin={v.vin} />
           <div>
-            The VIN decoding has been created based on the efforts of
-            <a href="https://teslatap.com/vin-decoder/">VIN decoder</a>.
+            The VIN decoding has been created based on the efforts
+            of <a href="https://teslatap.com/vin-decoder/">VIN decoder</a>.
           </div>
         </div>
         <div className="detail options">

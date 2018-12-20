@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AccountBarLoggedOff from "../containers/accountbarloggedoff";
 import AccountBarLoggedOn from "../containers/accountbarloggedon";
+
 import "./accountbar.scss";
 
 export interface Props {

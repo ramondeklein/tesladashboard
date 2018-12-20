@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import "./optiondecoder.scss";
 
 export interface Props {

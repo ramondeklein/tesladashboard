@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { VinInfoPart } from "../services/vindecoder";
+
 import "./vinpart.scss";
 
 export interface Props {

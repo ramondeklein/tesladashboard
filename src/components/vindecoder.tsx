@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { decodeVin, isValidVin } from "../services/vindecoder";
-import "./vindecoder.scss";
 import { VinPart } from "./vinpart";
+
+import "./vindecoder.scss";
 
 export interface Props {
   vin: string;

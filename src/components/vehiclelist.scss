@@ -3,12 +3,17 @@
 ul.vehiclelist {
     margin: 0;
     padding: 0;
+
     li {
         list-style-type: none;
-        padding: 5px 10px;
-        border-bottom: 1px solid $border-color;
-        &.selected {
-            background: $border-color;
+        a {
+            display: block;
+            
+            padding: 5px 10px;
+            border-bottom: 1px solid $border-color;
+            &.selected {
+                background: $border-color;
+            }
         }
     }
 }

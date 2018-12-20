@@ -9,12 +9,7 @@ interface RouterProps {
 
 function getSelectedVehicle(state: ApplicationState, vehicleId: number) {
   if (state.vehicles.vehicles) {
-    for (const vehicle of state.vehicles.vehicles)
-    {
-      if (vehicle.id === vehicleId) {
-        return vehicle;
-      }
-    }
+    return state.vehicles.vehicles.find((v) => v.id === vehicleId);
   }
 }
 

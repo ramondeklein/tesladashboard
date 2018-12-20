@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { Vehicle } from "../services/teslaapi/datatypes";
+
 import "./vehiclelist.scss";
 
 export interface Props {
@@ -20,7 +21,7 @@ export class VehicleList extends Component<Props> {
   private renderVehicle(v: Vehicle) {
     return (
       <li key={v.id}>
-        <NavLink to={`/vehicle/${v.id}`}>{v.display_name}</NavLink>
+        <NavLink to={`/vehicle/${v.id}`} activeClassName="selected">{v.display_name}</NavLink>
       </li>
     );
   }
