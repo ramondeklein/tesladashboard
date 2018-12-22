@@ -1,5 +1,8 @@
+@import '../styles/colors';
+
 .logo {
     height: 25px;
+    fill: $action-color;
 
     &.animate {
       animation: logo-spin infinite 1s linear;

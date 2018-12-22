@@ -3,13 +3,14 @@ import { TeslaApi } from "./teslaapi";
 
 export class TeslaApiDummy implements TeslaApi {
     public async login(email: string, password: string): Promise<AccessToken> {
-        return {
-            access_token: "dummy",
-            created_at: 1545213131,
-            expires_in: 3888000,
-            refresh_token: "dummy",
-            token_type: "dummy",
-        };
+        return new Promise((resolve) =>
+            setTimeout(() => resolve({
+                access_token: "dummy",
+                created_at: 1545213131,
+                expires_in: 3888000,
+                refresh_token: "dummy",
+                token_type: "dummy",
+            }), 1000));
     }
 
     public async getVehicles(token: string): Promise<Vehicle[]> {

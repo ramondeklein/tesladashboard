@@ -1,3 +1,5 @@
+@import './styles/colors';
+
 * {
   box-sizing: border-box;
 }
@@ -21,5 +23,58 @@ a {
   }
   &:hover {
     color: #888;
+  }
+}
+
+button.icon {
+  background: transparent;
+  border: 0;
+  color: $action-color;
+  fill: $action-color;
+  padding: 0;
+  cursor: pointer;
+  
+  &:hover {
+    color: #ccc;
+  }
+
+  &:disabled {
+    opacity: .5;
+  }
+
+  &:focus {
+    outline: 0;
+    color: $text-color;
+    fill: $text-color;
+    }
+}
+
+
+input {
+  border: 1px solid transparent;
+  padding: 3px 6px;
+  margin: 0;
+  background: $title-color;
+  color: $text-color;
+
+  &:focus {
+    outline: 0;
+    border-color: $border-color;
+  }
+}
+
+button {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0;
+  fill: $action-color;
+  color: $action-color;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+    fill: $text-color;
+    color: $text-color;
   }
 }

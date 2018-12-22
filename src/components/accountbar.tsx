@@ -10,9 +10,10 @@ export interface Props {
 
 export class AccountBar extends Component<Props> {
   public render() {
-    if (this.props.isLoggedOn) {
-      return (<AccountBarLoggedOn/>);
-    }
-    return (<AccountBarLoggedOff message="Enter your Tesla account credentials" />);
+    return (
+      <div className="accountbar">
+        {this.props.isLoggedOn ? (<AccountBarLoggedOn/>) : (<AccountBarLoggedOff />)}
+      </div>
+    );
   }
 }

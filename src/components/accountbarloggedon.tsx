@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { Icon } from "./icon";
+
 import "./accountbar.scss";
 
 export interface Props {
@@ -13,10 +15,16 @@ export interface DispatchProps {
 export class AccountBarLoggedOn extends Component<Props & DispatchProps> {
   public render() {
     return (
-      <div className="accountbar">
-        <div className="fullname">{this.props.email}</div>
-        <div className="button" onClick={this.props.onLogOff} />
-      </div>
+      <form>
+        <span className="fullname">{this.props.email}</span>
+        <button className="icon" onClick={() => this.onLogOff()}>Logout</button>
+      </form>
     );
+  }
+
+  private onLogOff() {
+    if (this.props.onLogOff) {
+      this.props.onLogOff();
+    }
   }
 }

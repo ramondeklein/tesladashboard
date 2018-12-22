@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 import "./logo.scss";
-import tesla from "./logo.svg";
 
 export interface Props {
-    isRotating: boolean;
-  }
+  isRotating: boolean;
+}
 
 export class Logo extends Component<Props> {
   public render() {
     return (
-      <div>
-        <img src={tesla} className={this.getClasses()} alt="Tesla" />
-      </div>
+      <svg className={this.getClasses()} viewBox="0 0 100 100">
+        <g transform="matrix(1.3972914,0,0,1.3972914,-30.277712,-28.253726)">
+          <g transform="matrix(0.2822222,0,0,0.2822222,8.5906838,1.9332014)">
+            <path d="M 173.146,317.299 208.622,117.78 c 33.815,0 44.481,3.708 46.021,18.843 0,0 22.684,-8.458 34.125,-25.636 C 244.122,90.299 199.263,89.366 199.263,89.366 l -26.176,31.882 0.059,-0.004 -26.176,-31.883 c 0,0 -44.86,0.934 -89.5,21.622 11.431,17.178 34.124,25.636 34.124,25.636 1.549,-15.136 12.202,-18.844 45.79,-18.868 l 35.762,199.548" />
+            <path d="m 173.132,80.157 c 36.09,-0.276 77.399,5.583 119.687,24.014 5.652,-10.173 7.105,-14.669 7.105,-14.669 C 253.697,71.213 210.406,64.954 173.127,64.797 135.85,64.954 92.561,71.214 46.34,89.502 c 0,0 2.062,5.538 7.1,14.669 42.28,-18.431 83.596,-24.29 119.687,-24.014 h 0.005" />
+          </g>
+        </g>
+      </svg>
     );
   }
 
   private getClasses(): string {
     let classes = "logo";
     if (this.props.isRotating) {
-        classes += " animate";
+      classes += " animate";
     }
     return classes;
   }

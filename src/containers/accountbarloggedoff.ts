@@ -3,10 +3,10 @@ import { ConfigProps } from "redux-form";
 import { ThunkDispatch } from "redux-thunk";
 
 import { LogOn, logOn, RefreshVehicles, refreshVehicles } from "../actions";
-import { AccountBarLoggedOffForm, DispatchProps, LoginData, Props } from "../components/accountbarloggedoff";
+import { AccountBarLoggedOffForm, DispatchProps, LoginData } from "../components/accountbarloggedoff";
 import { ApplicationState } from "../types";
 
-function mapStateToProps(state: ApplicationState, props: Props): ConfigProps<LoginData, Props & DispatchProps> {
+function mapStateToProps(state: ApplicationState, props: {}): ConfigProps<LoginData, DispatchProps> {
   return {
     form: "loginForm",
     initialValues: {
