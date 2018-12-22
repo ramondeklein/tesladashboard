@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import { RouteComponentProps } from "react-router";
+
 import { Props, VehicleDetails } from "../components/vehicledetails";
+import { Vehicle } from "../services/teslaapi";
 import { ApplicationState } from "../types";
 
 interface RouterProps {
@@ -9,7 +11,7 @@ interface RouterProps {
 
 function getSelectedVehicle(state: ApplicationState, vehicleId: number) {
   if (state.vehicles.vehicles) {
-    return state.vehicles.vehicles.find((v) => v.id === vehicleId);
+    return state.vehicles.vehicles.find((v: Vehicle) => v.id === vehicleId);
   }
 }
 
