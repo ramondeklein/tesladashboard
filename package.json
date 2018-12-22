@@ -13,6 +13,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
+    "redux-form": "^8.0.4",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
@@ -40,6 +41,7 @@
     "@types/react-redux": "^6.0.11",
     "@types/react-router": "^4.4.3",
     "@types/react-router-dom": "^4.3.1",
+    "@types/redux-form": "^7.4.13",
     "node-sass": "^4.11.0",
     "react-app-rewire-hot-loader": "^1.0.3",
     "react-app-rewire-typescript": "^2.0.2",

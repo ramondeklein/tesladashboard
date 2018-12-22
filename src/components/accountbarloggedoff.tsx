@@ -1,46 +1,37 @@
-import React, { Component } from "react";
+import React, { Component, Dispatch } from "react";
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import "./accountbar.scss";
 
-export interface DispatchProps {
-  onLogOn?: (email: string, password: string) => void;
-}
-
-interface State {
+export interface LoginData {
   email: string;
   password: string;
 }
 
-export class AccountBarLoggedOff extends Component<DispatchProps, State> {
-  constructor(props: DispatchProps) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
+export interface Props {
+  message: string;
+}
 
+export interface DispatchProps {
+  onSubmit: (data: LoginData, dispatch: Dispatch<any>, props: Props) => void;
+}
+
+class AccountBarLoggedOff extends Component<Props & DispatchProps & InjectedFormProps<LoginData, Props & DispatchProps>> {
   public render() {
+    const { message } = this.props;
+    const { pristine, submitting, handleSubmit } = this.props;
+
     return (
-      <div className="accountbar">
-        <input className="email" type="email" onChange={(e) => this.handleOnEmailChange(e)}/>
-        <input className="password"  type="password" onChange={(e) => this.handleOnPasswordChange(e)}/>
-        <div className="button" onClick={() => this.onLogon()} />
+      <div>
+        <div>{message}</div>
+        <form onSubmit={handleSubmit}>
+          <Field name="email" component="input" type="email" placeholder="Email address" />
+          <Field name="password" component="input" type="password" placeholder="Password" />
+          <button type="submit" disabled={pristine || submitting}>Submit</button>
+        </form>
       </div>
     );
   }
-
-  private handleOnEmailChange(event: any) {
-    this.setState({ email: event.target.value });
-  }
-
-  private handleOnPasswordChange(event: any) {
-    this.setState({ password: event.target.value });
-  }
-
-  private onLogon() {
-    if (this.props.onLogOn) {
-      this.props.onLogOn(this.state.email, this.state.password);
-    }
-  }
 }
+
+export const AccountBarLoggedOffForm = reduxForm<LoginData, Props & DispatchProps>({})(AccountBarLoggedOff);

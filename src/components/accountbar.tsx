@@ -13,6 +13,6 @@ export class AccountBar extends Component<Props> {
     if (this.props.isLoggedOn) {
       return (<AccountBarLoggedOn/>);
     }
-    return (<AccountBarLoggedOff/>);
+    return (<AccountBarLoggedOff message="Enter your Tesla account credentials" />);
   }
 }
