@@ -1,10 +1,21 @@
 import { getEnabledCategories } from "trace_events";
 
+export interface Category {
+    code: string;
+    name?: string;
+    options: Option[];
+}
+
 export interface Option {
-    group?: string;
+    code: string;
+    category?: Category;
     name?: string;
     description?: string;
     excludes: string[];
+}
+
+export interface CategoryMap {
+    [key: string]: Category;
 }
 
 export interface OptionMap {
@@ -13,8 +24,6 @@ export interface OptionMap {
 
 export interface OptionsDecoder {
     loadPriceBooks(): Promise<OptionMap>;
-    decodeOption(code: string): Option | undefined;
-    decodeOptions(codes: string[]): OptionMap;
 }
 
 export class OptionsDecoderImpl implements OptionsDecoder {
@@ -25,19 +34,38 @@ export class OptionsDecoderImpl implements OptionsDecoder {
 
     public async loadPriceBooks(): Promise<OptionMap> {
         if (!this.options) {
+            const nullKey: string = "NULL";
+            const categories: CategoryMap = {};
             const options: OptionMap = {};
             for (const priceBook of this.priceBooks) {
                 const response = await fetch(`${this.priceBookSource}/${priceBook}`);
                 const result = await response.json();
+                const priceBookCategories = result.tesla.configSetPrices.categories;
+                for (const code of Object.keys(priceBookCategories)) {
+                    const priceBookCategory = priceBookCategories[code];
+                    categories[code] = {
+                        code: code,
+                        name: this.trim(priceBookCategory.name),
+                        options: [],
+                    };
+                }
+                categories[nullKey] = {
+                    code: nullKey,
+                    name: "Unknown",
+                    options: [],
+                };
                 const priceBookOptions = result.tesla.configSetPrices.options;
                 for (const code of Object.keys(priceBookOptions)) {
                     const priceBookOption = priceBookOptions[code];
+                    const category = (priceBookOption.category ? categories[priceBookOption.category] : undefined) || categories[nullKey];
                     options[code] = {
-                        group: priceBookOption.category,
-                        name: priceBookOption.name,
+                        code: code,
+                        category: category,
+                        name: this.trim(priceBookOption.name),
                         description: priceBookOption.description,
                         excludes: priceBookOption.excludes,
                     };
+                    category.options.push(options[code]);
                 }
             }
             this.options = options;
@@ -45,20 +73,14 @@ export class OptionsDecoderImpl implements OptionsDecoder {
         return this.options;
     }
 
-    public decodeOption(code: string): Option | undefined {
-        if (this.options) {
-            return this.options[code];
-        }
-    }
-
-    public decodeOptions(codes: string[]): OptionMap {
-        const options: OptionMap = {};
-        if (this.options) {
-            for (const code of codes) {
-                options[code] = this.options[code];
+    private trim(input?: string): string | undefined {
+        if (input) {
+            const tagIndex = input.indexOf("<");
+            if (tagIndex >= 0) {
+                input = input.substring(0, tagIndex);
             }
+            return input.trim();
         }
-        return options;
     }
 }
 

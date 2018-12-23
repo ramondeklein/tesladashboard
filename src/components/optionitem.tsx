@@ -1,21 +1,18 @@
 import React, { Component } from "react";
 
 import { Option } from "../services/optiondecoder";
+import { Sanitize } from "./sanitize";
 
 export interface Props {
-  code: string;
   option: Option;
 }
 
 export class OptionItem extends Component<Props> {
   public render() {
-    const { code, option } = this.props;
-    if (!option) {
-      return (<span className="code">{code}</span>);
-    }
+    const { option } = this.props;
     return (<div>
-      <span className="code">{code}</span>
-      <span className="name">{option.name}</span>
+      <span className="code">{option.code}</span>
+      <span className="name"><Sanitize html={option.name}/></span>
     </div>
     );
   }
