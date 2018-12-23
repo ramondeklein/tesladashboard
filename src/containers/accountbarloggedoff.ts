@@ -1,3 +1,4 @@
+import * as Cookies from "js-cookie";
 import { connect } from "react-redux";
 import { ConfigProps } from "redux-form";
 import { ThunkDispatch } from "redux-thunk";
@@ -10,7 +11,7 @@ function mapStateToProps(state: ApplicationState, props: {}): ConfigProps<LoginD
   return {
     form: "loginForm",
     initialValues: {
-      email: "",
+      email: Cookies.get("email") || "",
       password: "",
     },
   };
@@ -20,6 +21,7 @@ function mapDispatchToProps(dispatch: ThunkDispatch<ApplicationState, void, LogO
   return {
     onSubmit: async (formData) => {
       await dispatch(logOn(formData.email, formData.password));
+      Cookies.set("email", formData.email);
       await dispatch(refreshVehicles());
     },
   };

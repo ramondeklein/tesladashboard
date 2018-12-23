@@ -6,6 +6,7 @@
     "connected-react-router": "^6.0.0",
     "fetch": "^1.1.0",
     "history": "^4.7.2",
+    "js-cookie": "^2.2.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-hot-loader": "^4.6.2",
@@ -34,6 +35,7 @@
   "devDependencies": {
     "@types/history": "^4.7.2",
     "@types/jest": "23.3.10",
+    "@types/js-cookie": "^2.2.0",
     "@types/node": "10.12.15",
     "@types/react": "16.7.17",
     "@types/react-dom": "16.0.11",
