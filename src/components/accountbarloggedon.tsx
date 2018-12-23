@@ -17,7 +17,9 @@ export class AccountBarLoggedOn extends Component<Props & DispatchProps> {
     return (
       <form>
         <span className="fullname">{this.props.email}</span>
-        <button className="icon" onClick={() => this.onLogOff()}>Logout</button>
+        <button className="icon" onClick={() => this.onLogOff()}>
+          <Icon icon="logout" />
+        </button>
       </form>
     );
   }

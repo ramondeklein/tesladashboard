@@ -21,7 +21,9 @@ class AccountBarLoggedOff extends Component<DispatchProps & InjectedFormProps<Lo
       <form onSubmit={handleSubmit}>
         <Field name="email" component="input" type="email" placeholder="Email address" />
         <Field name="password" component="input" type="password" placeholder="Password" />
-        <button type="submit" className="icon">Login</button>
+        <button type="submit" className="icon">
+          <Icon icon="login" />
+        </button>
       </form>
     );
   }
